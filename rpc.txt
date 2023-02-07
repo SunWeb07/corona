@@ -1,0 +1,38 @@
+5) RPC- helloworld
+Server
+Package rpc_helloworld;
+Import javax.xml.ws.Endpoint;
+Public class Publisher {
+Public static void main(String[] args){
+Endpoint.publish(“http://localhost:7779/ws/
+hello”,new HelloWorld Imp 1());
+} }
+Client
+Package rpc_helloworld;
+Import java.net.Malformed URL Exception;
+Import java.net.URL;
+Import java.util.logging.Level;
+Import java.util.logging.Logger;
+Import javax.xml.namespace.QName;
+Import javax.xml.ws.Service;
+Pubic class RPC_HelloWorld {
+Public static void main(String[] args){
+try {
+URL url = new
+URL(“http://localhost:7779/ws/hello?wsdl”)
+;
+QName qname= new
+QName(“http://rpc_helloworld/”,”HelloWorl
+d Imp 1 Service”);
+Service service=Sevice.create(url,qname);
+HelloWorld hello=
+service.getFort(HelloWorld.class);
+System.out.println(hello.getHelloWorld(“H
+ello World !”));
+}
+Catch(Malformed URL Exception ex) {
+System.out.println(“WSDL document url
+error:”+ex);
+}
+}
+}
