@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lunch Outing</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f8f8f8;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #ffffff;
+      border-radius: 10px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      text-align: center;
+      color: #333333;
+    }
+
+    .radio-container {
+      margin-bottom: 20px;
+    }
+
+    .radio-container label {
+      display: block;
+      font-weight: bold;
+      color: #555555;
+      margin-bottom: 10px;
+    }
+
+    .radio-container .radio {
+      margin-right: 10px;
+    }
+
+    .moving-radio {
+      animation: moveAnimation 1s infinite alternate;
+    }
+
+    @keyframes moveAnimation {
+      from {
+        transform: translate(var(--random-x), var(--random-y));
+      }
+      to {
+        transform: translate(var(--random-offset-x), var(--random-offset-y));
+      }
+    }
+
+    #message {
+      text-align: center;
+      color: #555555;
+      font-size: 18px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Renuka is gonna give party today?</h1>
+    <div class="radio-container">
+      <input type="radio" id="yes" name="lunch" class="radio" onclick="handleRadioClick(this)">
+      <label for="yes">Yes</label>
+      <div id="o">
+      <input type="radio" id="no" name="lunch" class="radio" onmouseover="handleRadioClick(this)">
+      <label for="no">No</label>
+      </div>
+    </div>
+    <p id="message"></p>
+    <script>
+      function handleRadioClick(radio) {
+        const message = document.getElementById('message');
+        const noRadio = document.getElementById('no');
+        if (radio.id === 'yes') {
+          message.textContent = 'Hurray!';
+          document.getElementById('o').classList.remove('moving-radio');
+        } else if (radio.id === 'no') {
+          noRadio.disabled = true;
+          const randomOffsetX = Math.floor(Math.random() * 200) + 'px';
+          const randomOffsetY = Math.floor(Math.random() * 200) + 'px';
+          document.getElementById('o').style.setProperty('--random-offset-x', randomOffsetX);
+          document.getElementById('o').style.setProperty('--random-offset-y', randomOffsetY);
+          document.getElementById('o').classList.add('moving-radio');
+        }
+      }
+    </script>
+  </div>
+</body>
+</html>
